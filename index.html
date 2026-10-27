@@ -1,0 +1,245 @@
+# Data-panel-indo
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JASTEB PANEL - Premium Cloud Control</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #3b82f6;
+            --accent: #10b981;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .user-status {
+            background: #334155;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Grid Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .stat-title {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Action Panel */
+        .action-panel {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: white;
+            border-radius: 6px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">🚀 JASTEB PANEL</div>
+        <div class="menu-item active">Dashboard</div>
+        <div class="menu-item">Manage Bot</div>
+        <div class="menu-item">Hosting & Server</div>
+        <div class="menu-item">User Management</div>
+        <div class="menu-item">Settings</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h2>Welcome Back, Admin</h2>
+            <div class="user-status">Role: <span style="color: var(--accent);">Super Admin</span></div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total Active Clients</div>
+                <div class="stat-value" id="clientCount">142</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Server CPU Load</div>
+                <div class="stat-value" id="cpuLoad">24%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Active Bot Instances</div>
+                <div class="stat-value">18/20</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Monthly Revenue</div>
+                <div class="stat-value">Rp 2.450.000</div>
+            </div>
+        </div>
+
+        <!-- Action / Configuration Form -->
+        <div class="action-panel">
+            <h3 style="margin-bottom: 15px;">Deploy New Instance / Service</h3>
+            <form id="jastebForm">
+                <div class="form-group">
+                    <label for="clientName">Client Name</label>
+                    <input type="text" id="clientName" placeholder="Masukkan nama client" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">Service Type</label>
+                    <select id="serviceType">
+                        <option value="bot-wa">WhatsApp Automation Bot</option>
+                        <option value="panel-ff">Free Fire Control Panel</option>
+                        <option value="cpanel-reseller">Web Hosting Reseller</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <select id="duration">
+                        <option value="30">1 Month (30 Days)</option>
+                        <option value="90">3 Months (90 Days)</option>
+                        <option value="365">1 Year (365 Days)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Deploy & Activate</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple Form Interactivity
+        document.getElementById('jastebForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const service = document.getElementById('serviceType').value;
+            
+            alert(`Sukses Mendepoly Layanan!\nClient: ${name}\nLayanan: ${service}\nStatus: Aktif`);
+            
+            // Increment client count for visual effect
+            const clientCountEl = document.getElementById('clientCount');
+            clientCountEl.innerText = parseInt(clientCountEl.innerText) + 1;
+            
+            this.reset();
+        });
+
+        // Simulate Realtime CPU load change
+        setInterval(() => {
+            const randomCpu = Math.floor(Math.random() * (65 - 15 + 1)) + 15;
+            document.getElementById('cpuLoad').innerText = randomCpu + '%';
+        }, 4000);
+    </script>
+</body>
+</html>
